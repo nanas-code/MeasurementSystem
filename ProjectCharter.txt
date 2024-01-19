@@ -1,0 +1,114 @@
+1.1 Project Summary
+	The Measurement Web application will provide users the 
+	possibility to browse the measurement catalogue.
+
+	Furthermore is shall be possible to add, remove and modify a measurement data. 
+	Each measurement shall be connected to the user creating the measurement, 
+	only the owner may edit their own measurement(s). 
+	(All users may see all measurements.)
+	
+	The information shall be:  place (string, may not be empty), 
+	date (one string, may not be empty), 
+	the value (number, between -500.0 to 500.0),  
+	type ( like volume, distance etc) (string, may not be empty, but data value what you like to use). 
+
+	The site shall have a consistent interface and look and feel 
+	for both functional parts of the application and the measurements. 
+	The new web site shall have session based user authentication and store
+	its data to a MongoDB database 
+	(you may choose if you code directly with the mongoDB driver or use mongoose).
+	The site shall be protected with passport.js. The user must be authenticated.
+
+	Project Name:        Measurement System
+
+	Project Manager:     Nnanna Otuh
+
+	Project Analysts:    Nnanna Otuh
+
+	Responsible Users:   Users and Nnanna Otuh
+
+1.2 Project Scope.
+	The scope of this project is a web-based system that supports the ability 
+	to handle CRUD measurements.
+
+	The goal is:
+		a website that is designed primarily around user needs and behaviours, 
+		not organizational structure and requirements.
+
+		a user-friendly and usable site architecture and navigation system(s)
+
+		a homepage that is intuitively designed around user-identified critical tasks
+
+			the tasks being measurement management
+
+		user shall be able to register and to be authenticated.
+
+		users and things shall be stored in a MongoDB database
+
+ 
+	The outcomes will include:
+		A website with a consistent looking interface
+
+		Measurement management via the site
+
+			Users shall be able to log in
+
+			The users shall be able to handle its own measurements only, 
+			not other users.
+
+		Consistent navigation for things (and possible users).
+
+		on-line help in website navigation
+
+		A full authentication system for registered users.
+
+	The outcomes does not include:
+		multi language support
+
+		other databases then MongoDB
+
+1.3 System Purpose
+	1.3.1 Users
+		Those who will primarily benefit from the new system and those who will be 
+		affected by the new system include
+
+	Users:
+
+		Upon implementation of the new system, users will find 
+		site navigation and measurements after registration.
+
+		They will be able to more easily than before manage measurement information 
+
+		Will contain less dead content, less out of date content and less duplication
+
+	Stakeholders:
+
+		The owners sees a possibility to sell a project that is compliant with legislation
+
+		Easier to update as a result of the implementation of a 
+		consistent navigation and database system
+
+	1.3.2 Location
+		The system will be available to any potential user using the Internet. 
+		(<== In real life, for you it is ok using your local computer)
+
+	1.3.3 Responsibilities
+		The primary responsibilities of the new system:
+
+			provide users direct access to up-to-date, accurate thing information
+
+			registration and authentication of users
+
+			manage all CRUD data
+
+		Other desired features of the new system:
+
+			a consistent "look and feel" throughout the website
+
+			on-line help in website navigation
+
+	1.3.4 Need
+		This system is needed in order to service the expected increase in demand for thing products.
+		Replacement of the current websites will eliminate the shortcomings of those sites. 
+		The new system will allow the company to attract new users.
+
