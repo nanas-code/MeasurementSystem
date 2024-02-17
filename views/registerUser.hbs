@@ -1,0 +1,18 @@
+<h2>Register New User</h2>
+{{#if error}}
+<h6> Error: {{error}}</h6>
+<p></p>
+{{/if}}
+ Fill in the form to register as user on this site
+ <p></p>
+<h3>{{message}}</h3>
+<form method="POST" action="/register">
+    <label for="username">User name: </label>
+    <input type="text" id="username" name="username" autocomplete="off"  />
+    <label for="password">Password: </label>
+    <input type="password" id="password" name="password" autocomplete="off"  />
+
+    <input type="submit" value="Register User"/>
+</form>
+
+<a href="/">Back to Home</a>

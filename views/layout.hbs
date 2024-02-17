@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>{{title}}</title>
+
+    <link rel="stylesheet" href="/css/styles.css">
+
+</head>
+
+<body>
+    <!-- HBS PARTIALS ALLOW FOR CODE REUSE -->
+
+    {{> header }}
+
+    <div class="container">
+        <main>
+
+            {{{ body }}}
+        </main>
+        {{> nav}}
+        {{> aside}}
+
+    </div>
+
+        {{> footer }}
+
+
+    <!-- Here we would put script that can only be run when the place is renderd in the DOM tree. 
+        <script src="js/scripts.js"></script> -->
+</body>
+
+</html>

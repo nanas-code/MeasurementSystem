@@ -1,0 +1,11 @@
+<h4>{{mode}}</h4>
+{{#if user}}
+current user : {{user}}
+{{ else }}
+current user: unknown
+{{/if}}
+
+<h1>Edit Measurement</h1>
+<form action="/measurements/{{_id}}" method="POST">
+  <button type="submit">Update Measurement</button>
+</form>

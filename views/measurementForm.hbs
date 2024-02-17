@@ -1,0 +1,27 @@
+{{#if user}}
+current user : {{user}}
+{{ else }}
+current user: unknown
+{{/if}}
+
+<h1>Add Measurement</h1>
+<form action="/measurementform" method="POST">
+  <div>
+    <label for="place">Place:</label>
+    <input type="text" id="place" name="place" required>
+  </div>
+  <div>
+    <label for="value">Value:</label>
+    <input type="number" id="value" name="value" required min="-500" max="500">
+  </div>
+  <div>
+    <label for="type">Type:</label>
+    <select id="type" name="type" required>
+      <option value="temperature">Temperature</option>
+      <option value="length">Length</option>
+      <option value="volume">Volume</option>
+      </select>
+  </div>
+  <button type="submit">Add Measurement</button>
+</form>
+<a href="/logout">Logout</a>

@@ -5,17 +5,31 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js"
+    "start": "nodemon app.js",
+    "lint": "eslint app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "notuh",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^4.1.2",
+    "cookie-parser": "^1.4.6",
     "debug": "^4.3.4",
+    "dotenv": "^16.3.2",
     "express": "^4.18.2",
-    "http-errors": "^2.0.0"
+    "express-flash": "^0.0.2",
+    "express-session": "^1.18.0",
+    "hbs": "^4.2.0",
+    "http-errors": "^2.0.0",
+    "mongoose": "^8.1.0",
+    "morgan": "^1.10.0",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^8.0.0",
+    "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
-    "nodemon": "^3.0.2"
+    "eslint": "^8.56.0",
+    "nodemon": "^3.0.3"
   }
 }

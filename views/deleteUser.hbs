@@ -1,0 +1,9 @@
+<h1>User: {{user}}</h1>
+
+<a href="/user/{{_id}}/edit">Edit</a>
+<form action="/user/{{_id}}" method="post">
+  <input type="hidden" name="_method" value="delete" />
+  <button type="submit">Delete</button>
+</form>
+
+<a href="/user">Back to Users</a>
