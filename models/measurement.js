@@ -6,15 +6,14 @@ const measurementSchema = new Schema(
     place: { type: String, required: true },
     date: { type: Date, 
       required: true,
-      
     },
     value: {
       type: Number,
       required: true,
-      validate: [
-        (val) => val >= -500 && val <= 500,
-        'Value must be between -500 and 500',
+      min: [ -500,
+        'Value must be greater than or equal to -500',
       ],
+      max: 500
     },
     type: { type: String, required: true },
     user: {

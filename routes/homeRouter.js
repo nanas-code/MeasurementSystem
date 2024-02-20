@@ -8,8 +8,11 @@ const protectRoute = require('../utils/protectRoute')
 const theHomeController = new HomeController();
 const theprotectRoute = new protectRoute();
 
-homeRouter.get('/', theprotectRoute.allowif, theHomeController.getAll)
-homeRouter.get('/home', theprotectRoute.allowif, theHomeController.getAll)
-homeRouter.get('/index', theprotectRoute.allowif, theHomeController.getAll)
+homeRouter.get('/', theHomeController.getAll)
+homeRouter.get('/home', theHomeController.getAll)
+homeRouter.get('/measurementIndex', theHomeController.getAll)
+
+homeRouter.get('/about', theHomeController.about)
+homeRouter.get('/help', theHomeController.help)
 
 module.exports = homeRouter;

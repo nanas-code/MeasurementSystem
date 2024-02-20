@@ -1,5 +1,6 @@
 const chalk = require("chalk");
-const passport = require('./passport')
+const passport = require('passport')
+const Measurement = require('../models/measurement')
 
 class protectRoute {
   isLoggedIn = (req, res, next) => {
@@ -8,7 +9,7 @@ class protectRoute {
     }
     else {
       console.log(chalk.blueBright.inverse("Please login to continue"));
-      res.redirect("/login");
+      res.redirect('back')
     }
 
   };
@@ -29,7 +30,7 @@ class protectRoute {
         return res.status(404).json({ message: 'Measurement not found' });
       }
   
-      if (measurement.userId.toString() !== user._id.toString()) {
+      if (measurement.user.toString() !== user._id.toString()) {
         return res.status(403).json({ message: 'Unauthorized: Not owner of measurement' });
       }
   

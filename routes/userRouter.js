@@ -16,7 +16,7 @@ userRouter.get('/login', theUserController.getLoginUser);
 userRouter.post('/register', theUserController.postCreateUser);
 userRouter.post('/login', theUserController.postLoginUser);
 
-// // LOGOUT Method
-// userRouter.get('/logout', theprotectRoute.isLoggedIn, theUserController.logout);
+// LOGOUT Method
+userRouter.get('/logout', theUserController.logout);
 
 module.exports = userRouter;

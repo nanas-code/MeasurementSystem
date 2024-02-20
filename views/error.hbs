@@ -1,1 +1,5 @@
-Error: Something went wrong on the server
+    <h1>Error</h1>
+    <p>{{error.message}}</p>
+    {{#if error.stack}}
+        <pre>{{error.stack}}</pre>
+    {{/if}}

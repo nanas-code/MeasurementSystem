@@ -2,37 +2,36 @@
 require('dotenv').config();
 const createError = require("http-errors");
 const express = require("express");
-const session = require('express-session');
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+
 const http = require("http"); // This module creates the 'raw' http server, to which we connect the express app, see below.
 const chalk = require('chalk');
-const flash = require('express-flash')
-
-const passport = require('./utils/passport.js')
-
+const flash = require('express-flash');
 const favicon = require("serve-favicon");
 const hbs = require('hbs');
 const connectDB = require('./utils/db');
 
-// Connect to DB
-connectDB();
-  
-  //Routers
-  const homeRouter = require("./routes/homeRouter");
-  const userRouter = require("./routes/userRouter");
-  const measurementsRouter = require("./routes/measurementsRouter");
-  
-  /**
-   * Our own module dependecies, like utilities, converters, language and so on
-  */
- // pick only the following ones, could be more available
- const { normalizePort, onError, onListening } = require("./utils/serverUtilities.js");
- 
- /**
-  * Pick out the static web content folder
- */
+//Routers
+const homeRouter = require("./routes/homeRouter");
+const userRouter = require("./routes/userRouter");
+const measurementsRouter = require("./routes/measurementsRouter");
+
+const session = require('express-session');
+const passport = require("passport");
+
+const User = require("./models/user");
+
+/**
+ * Our own module dependecies, like utilities, converters, language and so on
+*/
+// pick only the following ones, could be more available
+const { normalizePort, onError, onListening } = require("./utils/serverUtilities.js");
+
+/**
+ * Pick out the static web content folder
+*/
 const publicDirectoryPath = path.join(__dirname, "./public");
 
 //  * Create the express web part and connect the modules that is will use
@@ -70,6 +69,12 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+// Connect to DB
+connectDB();
 
 //  * Middleware request handlers
 //  * They need to be in the correct order, ie the request is passed true them in the order they are defined.
@@ -87,12 +92,12 @@ app.use("/", measurementsRouter);
 // ===================================================
 // Error handlers
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-    next(createError(404));
-  });
-  
+app.use(function (req, res, next) {
+  next(createError(404));
+});
+
 // error handler for everything else
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

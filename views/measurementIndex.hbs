@@ -1,35 +1,20 @@
-<h2>Measurements</h2>
-<h3> {{message}} </h3>
+<h1>All Measurements</h1>
 {{#if user}}
-current user : {{user}}
-{{ else }}
-current user: unknown
+<p>You are currently logged in as {{user}}</p>
+<form action="/logout" method="post">
+<a href="/logout">Logout</a>
+</form>
+{{else}}
+<a href="/login">Login</a>
+<br>
+<a href="/register">Register</a>
 {{/if}}
-
-<a href="/measurementform">Add new Measurement</a>
-<table>
-    <p></p>
-    <thead>
-        <tr>
-            <th>Place</th>
-            <th>Date</th>
-            <th>Value</th>
-            <th>Type</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each measurements }}
-        <tr>
-            <td>{{this.place}}</td>
-            <td>{{this.date}}</td>
-            <td>{{this.value}}</td>
-            <td>{{this.type}}</td>
-            <td><a href="/update/{{this.id}}">Edit</a></td>
-            {{!-- {{#if ../user.username }}<td><a href="/measurement/update/{{this.:id}}"></a></td>{{/if}}
-            {{#if ../user.username }}<td><a href='/measurement/delete/{{this.:id}}'>remove</a></td>{{/if}} --}}
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
+{{#if measurements}}
+<ul>
+    {{#each measurements}}
+    <li>{{this.place}} - {{this.date}} - {{this.value}} - {{this.type}}</li>
+    {{/each}}
+</ul>
+{{else}}
+<p>No measurements found.</p>
+{{/if}}

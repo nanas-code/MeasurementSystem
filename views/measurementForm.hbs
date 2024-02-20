@@ -1,27 +1,15 @@
-{{#if user}}
-current user : {{user}}
-{{ else }}
-current user: unknown
-{{/if}}
+    <h1>{{mode}} Measurement</h1>
+    <h2>{{user}}</h2>
+    <form action="/measurementform" method="POST">
+        <label for="place">Place:</label>
+        <input type="text" id="place" name="place" value="{{measurement.place}}" required><br><br>
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" value="{{measurement.date}}" required><br><br>
+        <label for="value">Value:</label>
+        <input type="number" id="value" name="value" value="{{measurement.value}}" required><br><br>
+        <label for="type">Type:</label>
+        <input type="text" id="type" name="type" value="{{measurement.type}}" required><br><br>
+        <button type="submit">{{mode}}</button>
+    </form>
 
-<h1>Add Measurement</h1>
-<form action="/measurementform" method="POST">
-  <div>
-    <label for="place">Place:</label>
-    <input type="text" id="place" name="place" required>
-  </div>
-  <div>
-    <label for="value">Value:</label>
-    <input type="number" id="value" name="value" required min="-500" max="500">
-  </div>
-  <div>
-    <label for="type">Type:</label>
-    <select id="type" name="type" required>
-      <option value="temperature">Temperature</option>
-      <option value="length">Length</option>
-      <option value="volume">Volume</option>
-      </select>
-  </div>
-  <button type="submit">Add Measurement</button>
-</form>
-<a href="/logout">Logout</a>
+    {{!-- /{{measurement._id}} --}}
