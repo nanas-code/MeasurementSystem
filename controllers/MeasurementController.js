@@ -30,7 +30,7 @@ class MeasurementController {
   // get measurements for a specific user (for logged-in user)
   getByUser = async (req, res) => {
     try {
-      const measurements = await Measurement.find({ user: req.user._id });
+      const measurements = await Measurement.find({ user: req.user});
       res.render("measurementDetail", { measurements });
     } catch (error) {
       console.log(error);
@@ -59,7 +59,7 @@ class MeasurementController {
         date,
         value,
         type,
-        user: req.user._id,
+        user: req.user,
       });
       res.render("measurementDetail", {measurement});
     } catch (error) {

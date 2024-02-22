@@ -28,7 +28,7 @@ class UserController {
           if (err) {
             return next(err);
           }
-          res.locals.user = user.username;
+          res.locals.currentUser = req.user;
           res.redirect('/')
         });
       });
@@ -61,7 +61,7 @@ class UserController {
           return next(err);
         }
         // Authentication successful, redirect to home page or wherever you want
-        res.app.locals.user = user.username
+        res.locals.currentUser = req.user;
         return res.redirect("/");
       });
     })(req, res, next);;

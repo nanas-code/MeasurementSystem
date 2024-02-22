@@ -4,8 +4,8 @@
 <p>Value: {{measurement.value}}</p>
 <p>Type: {{measurement.type}}</p>
 <h1>User: {{measurement.user.username}}</h1>
-{{#if user}}
-<p>You are currently logged in as {{user}}</p>
+{{#if currentUser}}
+<p>You are currently logged in as {{currentUser.username}}</p>
 <form action="/logout" method="post">
     <button type="submit">Logout</button>
 </form>

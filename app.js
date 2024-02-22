@@ -20,12 +20,8 @@ const measurementsRouter = require("./routes/measurementsRouter");
 
 const session = require('express-session');
 const passport = require("passport");
+require('./utils/passportConfig');
 
-const User = require("./models/user");
-
-/**
- * Our own module dependecies, like utilities, converters, language and so on
-*/
 // pick only the following ones, could be more available
 const { normalizePort, onError, onListening } = require("./utils/serverUtilities.js");
 
@@ -34,26 +30,17 @@ const { normalizePort, onError, onListening } = require("./utils/serverUtilities
 */
 const publicDirectoryPath = path.join(__dirname, "./public");
 
-//  * Create the express web part and connect the modules that is will use
-//  * Express is a routing and middleware web framework that has minimal functionality of its own:
-//  * An Express application is essentially a series of middleware function calls.
-
-const app = express(); // Creates an Express web application. The express() function is a top-level function exported by the express module.
+const app = express(); // Creates an Express web application.
 
 // view engine setup
-// We change some of the default values, you do not need to, use your conventions.
-// We change the default extension name from .handlebars to .hbs.
-
 hbs.registerPartials(__dirname + '/views/partials');
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 
 // middlewares
 app.use(logger("dev"));
-// parse application/json
-app.use(express.json());
-// parse application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: false }));
+app.use(express.json()); // parse application/json
+app.use(express.urlencoded({ extended: false })); // parse application/x-www-form-urlencoded
 app.use(flash())
 
 app.use(cookieParser());
@@ -69,16 +56,16 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(User.createStrategy());
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
 
 // Connect to DB
 connectDB();
 
-//  * Middleware request handlers
-//  * They need to be in the correct order, ie the request is passed true them in the order they are defined.
-//  * So, first the ones we define, and last the error handlers
+// Middleware to set current user in locals for Handlebars
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+  next();
+  console.log(req.user);
+});
 
 // ===================================================
 // HERE WE SHALL HAVE OUR HANDLERS, which we add
