@@ -1,20 +1,18 @@
 <h1>All Measurements</h1>
-{{#if user}}
-<p>You are currently logged in as {{user}}</p>
-<form action="/logout" method="post">
-<a href="/logout">Logout</a>
-</form>
-{{else}}
-<a href="/login">Login</a>
-<br>
-<a href="/register">Register</a>
-{{/if}}
 {{#if measurements}}
 <ul>
     {{#each measurements}}
+   
     <li>{{this.place}} - {{this.date}} - {{this.value}} - {{this.type}}</li>
+     <a href="/measurements/{{this._id}}">View Details</a>
     {{/each}}
 </ul>
 {{else}}
 <p>No measurements found.</p>
+{{/if}}
+
+{{#if messages.error}}
+  <div class="alert alert-danger" role="alert">
+    {{messages.error}}
+  </div>
 {{/if}}

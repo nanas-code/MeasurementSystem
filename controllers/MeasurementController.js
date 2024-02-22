@@ -2,10 +2,24 @@ const Measurement = require("../models/measurement");
 const User = require("../models/user");
 
 class MeasurementController {
+    // get measurements for public 
+    getAll = async (req, res, next) => {
+      try {
+        const measurements = await Measurement.find({});
+        res.render("measurementIndex", { measurements });
+      } catch (error) {
+        console.log(error);
+        res.render("error");
+      }
+    }
   // get measurements by user:id
   getById = async (req, res) => {
     try {
-      const measurement = await Measurement.findById(req.params.id);
+      const local = {
+        title: 'Measurement System',
+        message: 'Login to create, edit or delete your measurements'
+      }
+      const measurement = await Measurement.findById(req.params.id).populate('user');
       res.render("measurementDetail", { measurement });
     } catch (error) {
       console.log(error);
@@ -27,12 +41,8 @@ class MeasurementController {
   // GET /measurement form to add new measurement
   getCreate = async (req, res) => {
     try {
-      if (!req.user) {
-        const message = {mode: "login required"};
-        return res.render("/", message);
-      }
       // Check if user is logged in before sending measurementForm.hbs
-      const info = { mode: "Add new measurement" };
+      const info = { mode: "Login to Add new measurement" };
       res.render("measurementForm", info);
     } catch (error) {
       console.log(error);

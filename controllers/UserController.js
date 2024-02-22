@@ -68,12 +68,14 @@ class UserController {
   };
 
   logout = (req, res, next) => {
+    
     req.logout((error) => {
       if (error) {
         console.log(error);
         return next(error);
       }
-      res.redirect("/login");
+      req.session.destroy();
+      res.redirect("/");
     });
   }
 }

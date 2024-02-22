@@ -1,15 +1,19 @@
 const Measurement = require("../models/measurement");
 
 class HomeController {
-  // get measurements for public 
-  getAll = async (req, res, next) => {
+
+  homePage = (req, res) => {
     try {
-      const measurements = await Measurement.find({});
-      res.render("measurementIndex", { measurements });
+      const local = {
+        title: 'Measurement System',
+        message: 'Login to create, edit or delete your measurements'
+      }
+      res.render('home', local )
     } catch (error) {
       console.log(error);
-      res.render("error");
+      res.render("error")
     }
+
   }
 
   about = (req, res) => {

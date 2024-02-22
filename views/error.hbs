@@ -1,5 +1,10 @@
-    <h1>Error</h1>
-    <p>{{error.message}}</p>
-    {{#if error.stack}}
-        <pre>{{error.stack}}</pre>
-    {{/if}}
+<h1>Error</h1>
+<p>{{error.message}}</p>
+{{#if error.stack}}
+<pre>{{error.stack}}</pre>
+{{/if}}
+{{#if messages.error}}
+<div class="alert alert-danger" role="alert">
+    {{messages.error}}
+</div>
+{{/if}}

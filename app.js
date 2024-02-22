@@ -63,8 +63,8 @@ app.use(favicon(path.join(publicDirectoryPath, "favicon.ico")));
 // session setup
 app.use(session({
   secret: process.env.SESSION_SECRET,
-  resave: true,
-  saveUninitialized: true
+  resave: false,
+  saveUninitialized: false
 }));
 
 app.use(passport.initialize());

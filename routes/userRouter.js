@@ -8,8 +8,8 @@ const theUserController = new UserController();
 const theprotectRoute = new protectRoute();
 
 // GET Methods
-userRouter.get('/register', theUserController.getCreateUser);
-userRouter.get('/login', theUserController.getLoginUser);
+userRouter.get('/register', theprotectRoute.allowif, theUserController.getCreateUser);
+userRouter.get('/login', theprotectRoute.allowif,theUserController.getLoginUser);
 
 
 // // POST Methods
@@ -17,6 +17,6 @@ userRouter.post('/register', theUserController.postCreateUser);
 userRouter.post('/login', theUserController.postLoginUser);
 
 // LOGOUT Method
-userRouter.get('/logout', theUserController.logout);
+userRouter.post('/logout', theUserController.logout);
 
 module.exports = userRouter;
