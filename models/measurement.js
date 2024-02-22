@@ -1,5 +1,4 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const { Schema, model } = require("mongoose");
 
 const measurementSchema = new Schema(
   {
@@ -17,13 +16,12 @@ const measurementSchema = new Schema(
     },
     type: { type: String, required: true },
     user: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'User',
       required: true,
     },
   },
-  { timestamps: true }
 );
 
-const Measurement = mongoose.model("Measurement", measurementSchema);
+const Measurement = model("Measurement", measurementSchema);
 module.exports = Measurement;

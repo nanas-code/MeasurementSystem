@@ -9,7 +9,7 @@ class MeasurementController {
         res.render("measurementIndex", { measurements });
       } catch (error) {
         console.log(error);
-        res.render("error");
+        res.redirect("/");
       }
     }
   // get measurements by user:id
@@ -20,18 +20,22 @@ class MeasurementController {
         message: 'Login to create, edit or delete your measurements'
       }
       const measurement = await Measurement.findById(req.params.id).populate('user');
+      if (!measurement) {
+        return res.redirect('/allmeasurements');
+      }
       res.render("measurementDetail", { measurement });
     } catch (error) {
       console.log(error);
-      res.render("error");
+      res.redirect("/allmeasurements");
     }
   };
 
   // get measurements for a specific user (for logged-in user)
   getByUser = async (req, res) => {
     try {
-      const measurements = await Measurement.find({ user: req.user});
-      res.render("measurementDetail", { measurements });
+      const measurements = await Measurement.find({user: req.user._id});
+      res.render("myMeasurementIndex", { measurements });
+      console.log( measurements );
     } catch (error) {
       console.log(error);
       res.render("error");
@@ -42,8 +46,7 @@ class MeasurementController {
   getCreate = async (req, res) => {
     try {
       // Check if user is logged in before sending measurementForm.hbs
-      const info = { mode: "Login to Add new measurement" };
-      res.render("measurementForm", info);
+      res.render("measurementForm", { mode: "Create Measurement" });
     } catch (error) {
       console.log(error);
       res.redirect("error");
@@ -64,7 +67,7 @@ class MeasurementController {
       res.render("measurementDetail", {measurement});
     } catch (error) {
       console.log(error);
-      res.redirect("/");
+      res.redirect("/newmeasurement");
     }
   };
 
@@ -75,21 +78,19 @@ class MeasurementController {
       res.render("measurementForm", { mode: "Update", measurement });
     } catch (error) {
       console.log(error);
-      res.render("error");
       res.redirect("back");
     }
   };
 
   // POST /measurement to update
   postUpdate = async (req, res) => {
-
+    const { place, date, value, type } = req.body;
     try {
-      const id = req.params.id;
-      await Measurement.findByIdAndUpdate(id, req.body);
-      res.redirect("/");
+      await Measurement.findByIdAndUpdate(req.params.id, { place, date, value, type });
+      res.redirect("/mymeasurements");
     } catch (error) {
       console.log(error);
-      res.render("error");
+      res.redirect("/allmeasurements");
     }
   };
 

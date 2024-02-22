@@ -1,14 +1,18 @@
-<h1>All Measurements</h1>
+<h1>{{currentUser.username}}'s Measurements</h1>
 {{#if measurements}}
+<strong><a href="/newmeasurement">Add new measurements</a></strong>
 <ul>
     {{#each measurements}}
    
     <li>{{this.place}} - {{this.date}} - {{this.value}} - {{this.type}}</li>
      <a href="/measurement/{{this._id}}">View Details</a>
+     <a href="/update/{{this._id}}">Edit</a>
+     <a href="/delete/{{this._id}}">Delete</a>
     {{/each}}
 </ul>
 {{else}}
 <p>No measurements found.</p>
+
 {{/if}}
 
 {{#if messages.error}}

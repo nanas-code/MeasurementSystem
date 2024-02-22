@@ -1,7 +1,5 @@
-const mongoose = require('mongoose');
+const { Schema, model } = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
-const Schema = mongoose.Schema;
-const model = mongoose.model;
 
 const userSchema = new Schema({
   username: {
@@ -11,12 +9,9 @@ const userSchema = new Schema({
   },
   password: {
     type: String,
-  },
-  measurements: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Measurement' }]
-  
+  }
 });
 userSchema.plugin(passportLocalMongoose);
-
 
 const User = model('User', userSchema);
 module.exports = User;

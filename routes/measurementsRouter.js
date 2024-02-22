@@ -9,12 +9,13 @@ const theprotectRoute = new protectRoute();
 
 // // GET Methods /////////////////////////////////////
 
-measurementsRouter.get('/measurementIndex', theMeasurementController.getAll)
+measurementsRouter.get('/allmeasurements', theMeasurementController.getAll)
+measurementsRouter.get('/mymeasurements', theprotectRoute.isLoggedIn, theMeasurementController.getByUser)
 
-measurementsRouter.get('/measurements/:id', theMeasurementController.getById);
+measurementsRouter.get('/measurement/:id', theMeasurementController.getById);
 
 // This route fetch the form to fill in 
-measurementsRouter.get('/measurementform', theprotectRoute.isLoggedIn,theMeasurementController.getCreate)
+measurementsRouter.get('/newmeasurement', theprotectRoute.isLoggedIn, theMeasurementController.getCreate)
 
 // This route reads the measurements
 // This route fecth the form with the selected id to edit
@@ -24,10 +25,10 @@ measurementsRouter.get('/update/:id', theprotectRoute.isOwner, theMeasurementCon
 // // POST Methods /////////////////////////////////////
 
 // This route sends back the form to the server
-measurementsRouter.post('/measurementform', theMeasurementController.postCreate);
+measurementsRouter.post('/newmeasurement', theprotectRoute.isLoggedIn, theMeasurementController.postCreate);
 
 // This route send back the form with the selected id to the server
-measurementsRouter.post('/update/:id', theMeasurementController.postUpdate)
+measurementsRouter.post('/update/:id', theprotectRoute.isOwner, theMeasurementController.postUpdate)
 
 // DELETE Methods //////////////////////////////////
 measurementsRouter.delete('/delete/:id', theMeasurementController.postDelete);

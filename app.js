@@ -50,8 +50,8 @@ app.use(favicon(path.join(publicDirectoryPath, "favicon.ico")));
 // session setup
 app.use(session({
   secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false
+  resave: true,
+  saveUninitialized: true
 }));
 
 app.use(passport.initialize());
@@ -64,7 +64,6 @@ connectDB();
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
   next();
-  console.log(req.user);
 });
 
 // ===================================================

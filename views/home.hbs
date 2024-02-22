@@ -3,10 +3,22 @@
 <h1>{{message}}</h1>
 <br>
 <h3>
-    <a href="/measurementIndex">
+    <a href="/allmeasurements">
         View all measurements here
     </a>
 </h3>
+{{#if currentUser}}
+<h1>Welcome {{ currentUser.username }}</h1>
+<div>
+    <a href="/mymeasurements">View your measurements here</a>
+    <br>
+    <br>
+    <a href="/newmeasurement">Create your measurements here</a>
+    </div>
+    <br>
+
+<button><a href="/logout">logout</a></button>
+{{/if}}
 {{#if messages.error}}
 <div class="alert alert-danger" role="alert">
     {{messages.error}}
