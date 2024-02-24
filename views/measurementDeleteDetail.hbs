@@ -1,0 +1,20 @@
+<h1>Measurement Detail</h1>
+<h2>{{ mode }} <p>Are you sure you want to delete this measurement?</p></h2>
+<p><strong>Place:</strong> {{measurement.place}}</p>
+<p><strong>Date:</strong> {{measurement.date}}</p>
+<p><strong>Value:</strong> {{measurement.value}}</p>
+<p><strong>Type:</strong> {{measurement.type}}</p>
+
+<form action="/delete/{{measurement._id}}" method="post">
+    <button type="submit">Delete</button>
+</form>
+<h1>You are currently logged in as {{currentUser.username}}</h1>
+
+<form action="/logout" method="post">
+    <button type="submit">Logout</button>
+</form>
+{{#if messages.error}}
+<div class="alert alert-danger" role="alert">
+    {{messages.error}}
+</div>
+{{/if}}

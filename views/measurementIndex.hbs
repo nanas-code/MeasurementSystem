@@ -1,10 +1,11 @@
 <h1>All Measurements</h1>
-{{#if measurements}}
+<h3>{{message}}</h3>
+{{#if acrobat}}
 <ul>
-    {{#each measurements}}
+    {{#each acrobat }}
    
-    <li>{{this.place}} - {{this.date}} - {{this.value}} - {{this.type}}</li>
-     <a href="/measurement/{{this._id}}">View Details</a>
+    <li>{{this.place}} &#10073; {{this.date}} &#10073; {{this.value}} &#10073; {{this.type}} </li>
+    &#10073; <a href="/measurement/{{this._id}}">View Details</a><br><br>
     {{/each}}
 </ul>
 {{else}}

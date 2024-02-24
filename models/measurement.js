@@ -14,7 +14,7 @@ const measurementSchema = new Schema(
       ],
       max: 500
     },
-    type: { type: String, required: true },
+    type: { type: String, required: true, enum: ["distance", "temperature", "speed", "area", "volume" ] },
     user: {
       type: Schema.Types.ObjectId,
       ref: 'User',

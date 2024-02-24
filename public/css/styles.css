@@ -1,77 +1,100 @@
+* {
+    font-family: Arial, sans-serif;
+}
+
 body {
-    width: 970px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    padding: 0;
+}
+
+.container {
+    width: 970px;
     margin: 0 auto;
-  }
-  .container {
     display: flex;
     flex: 1;
-  }
-  main {
-    border: solid black 3px;
-    flex: 50%;
-    padding: 0 20px;
-  }
-  nav {
-    border: solid black 3px;
-    flex: 0 0 25%;
+    flex-direction: row;
+}
+
+main {
+    flex: 60%;
+    padding: 20px;
+    background-color: #f2f2f2;
+    justify-content: center;
+}
+
+nav {
+    flex: 20%;
     padding: 0 10px;
     order: -1;
-  }
-  aside {
-    border: solid black 3px;
-    flex: 0 0 25%;
+    background-color: #c8f1fa;
+}
+
+
+aside {
+    flex: 20%;
     padding: 0 10px;
-  }
-
-
-h1, h2 {
-    color:rgb(30, 30, 175);
+    background-color: #c8f1fa;
 }
 
-h4.success {
-    color:rgb(0, 255, 55);
-}
-h4.failure {
-    color:rgb(255, 0, 0);
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: rgb(30, 30, 175);
 }
 
-img {
-    width: 250px;
+ul {
+    gap: 20px;
+    padding: 3px;
 }
 
-table {
-    width: 100%;
-    font: 17px Calibri;
-}
-
-table, th, td {
-    border: solid 1px #DDD;
-    border-collapse: collapse;
-    padding: 2px 3px;
+li {
+    padding: 3px;
     text-align: center;
+    background-color: #c8f1fa;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 label {
-    display: block ;
+    display: block;
 }
 
-input[type='button'] {
+button[type='submit'] {
     font: 15px Calibri;
     cursor: pointer;
     border: none;
     color: #FFF;
+    background-color: black;
 }
 
-input[type='text'], select  {
+input {
     font: 17px Calibri;
     text-align: center;
     border: solid 1px #CCC;
-    width: auto;
     padding: 2px 3px;
 }
+
 .allpages {
+    text-align: center;
+}
+
+header,
+nav,
+main,
+aside,
+footer {
+    padding: 20px;
+}
+
+header,
+footer {
+    background-color: #fedcab;
+    color: blue;
     text-align: center;
 }

@@ -4,15 +4,15 @@
 <ul>
     {{#each measurements}}
    
-    <li>{{this.place}} - {{this.date}} - {{this.value}} - {{this.type}}</li>
-     <a href="/measurement/{{this._id}}">View Details</a>
-     <a href="/update/{{this._id}}">Edit</a>
-     <a href="/delete/{{this._id}}">Delete</a>
+    <li>{{this.place}} &#10073; {{this.date}} &#10073; {{this.value}} &#10073; {{this.type}}</li>
+    &#10073; <a href="/measurement/{{this._id}}">View Details</a>
+    &#10073; <a href="/update/{{this._id}}">Edit</a>
+    &#10073; <a href="/delete/{{this._id}}">Delete</a><br><br>
     {{/each}}
 </ul>
 {{else}}
 <p>No measurements found.</p>
-
+<strong><a href="/newmeasurement">Add new measurements</a></strong>
 {{/if}}
 
 {{#if messages.error}}

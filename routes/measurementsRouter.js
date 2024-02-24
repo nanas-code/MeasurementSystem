@@ -20,7 +20,7 @@ measurementsRouter.get('/newmeasurement', theprotectRoute.isLoggedIn, theMeasure
 // This route reads the measurements
 // This route fecth the form with the selected id to edit
 measurementsRouter.get('/update/:id', theprotectRoute.isOwner, theMeasurementController.getUpdate)
-
+measurementsRouter.get('/delete/:id', theprotectRoute.isOwner, theMeasurementController.getDelete)
 
 // // POST Methods /////////////////////////////////////
 
@@ -31,6 +31,6 @@ measurementsRouter.post('/newmeasurement', theprotectRoute.isLoggedIn, theMeasur
 measurementsRouter.post('/update/:id', theprotectRoute.isOwner, theMeasurementController.postUpdate)
 
 // DELETE Methods //////////////////////////////////
-measurementsRouter.delete('/delete/:id', theMeasurementController.postDelete);
+measurementsRouter.post('/delete/:id', theprotectRoute.isOwner, theMeasurementController.postDelete);
 
 module.exports = measurementsRouter;

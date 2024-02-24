@@ -2,28 +2,23 @@ const Measurement = require("../models/measurement");
 const User = require("../models/user");
 
 class MeasurementController {
-    // get measurements for public 
-    getAll = async (req, res, next) => {
-      try {
-        const measurements = await Measurement.find({});
-        res.render("measurementIndex", { measurements });
-      } catch (error) {
-        console.log(error);
-        res.redirect("/");
-      }
+  // get measurements for public 
+  getAll = async (req, res, next) => {
+    try {
+      const measurements = await Measurement.find({});
+      res.render("measurementIndex", { acrobat: measurements });
+    } catch (error) {
+      console.log(error);
+      res.redirect("/");
     }
+  }
   // get measurements by user:id
   getById = async (req, res) => {
+
     try {
-      const local = {
-        title: 'Measurement System',
-        message: 'Login to create, edit or delete your measurements'
-      }
+      const eba = { mode: 'measurements' }
       const measurement = await Measurement.findById(req.params.id).populate('user');
-      if (!measurement) {
-        return res.redirect('/allmeasurements');
-      }
-      res.render("measurementDetail", { measurement });
+      res.render("measurementShowDetail", {measurement, eba} );
     } catch (error) {
       console.log(error);
       res.redirect("/allmeasurements");
@@ -33,9 +28,12 @@ class MeasurementController {
   // get measurements for a specific user (for logged-in user)
   getByUser = async (req, res) => {
     try {
-      const measurements = await Measurement.find({user: req.user._id});
+      const measurements = await Measurement.find({ user: req.user._id });
+      if (!measurements) {
+        return res.redirect('/allmeasurements');
+      }
       res.render("myMeasurementIndex", { measurements });
-      console.log( measurements );
+      console.log(measurements);
     } catch (error) {
       console.log(error);
       res.render("error");
@@ -43,10 +41,13 @@ class MeasurementController {
   };
 
   // GET /measurement form to add new measurement
-  getCreate = async (req, res) => {
+  getCreate = (req, res) => {
     try {
+      const local = {
+        mode: "Create Measurement"
+      }
       // Check if user is logged in before sending measurementForm.hbs
-      res.render("measurementForm", { mode: "Create Measurement" });
+      res.render("measurementCreateForm", local );
     } catch (error) {
       console.log(error);
       res.redirect("error");
@@ -64,7 +65,7 @@ class MeasurementController {
         type,
         user: req.user,
       });
-      res.render("measurementDetail", {measurement});
+      res.render("measurementShowDetail", { measurement, mode: "just added"});
     } catch (error) {
       console.log(error);
       res.redirect("/newmeasurement");
@@ -75,7 +76,7 @@ class MeasurementController {
   getUpdate = async (req, res) => {
     try {
       const measurement = await Measurement.findById(req.params.id);
-      res.render("measurementForm", { mode: "Update", measurement });
+      res.render("measurementEditForm", { mode: "update", measurement });
     } catch (error) {
       console.log(error);
       res.redirect("back");
@@ -95,30 +96,24 @@ class MeasurementController {
   };
 
   // GET /measurement to delete
-  getDelete = async (req, res, next) => {
+  getDelete = async (req, res) => {
     try {
       const measurement = await Measurement.findById(req.params.id);
-      if (!measurement) {
-        return res.redirect("back");
-      }
-      const info = {
-        mode: "Remove",
-      }; // Assuming there's a title and body property in Measurement model
-      res.render("measurementDeleteForm", info); // Assuming there's a measurementDeleteForm view
+      res.render("measurementDeleteDetail", { mode: "delete", measurement });
     } catch (error) {
       console.log(error);
-      res.render("error");
+      res.redirect("back");
     }
   };
+
   // post measurement to delete
   postDelete = async (req, res) => {
     try {
-      const id = req.params.id;
-      await Measurement.findByIdAndDelete(id);
-      res.redirect("/");
+      await Measurement.findByIdAndDelete(req.params.id);
+      res.redirect("/mymeasurements");
     } catch (error) {
       console.log(error);
-      res.render("error");
+      res.redirect("/allmeasurements");
     }
   };
 }

@@ -60,6 +60,14 @@ app.use(passport.session());
 // Connect to DB
 connectDB();
 
+// // Global variables for messages
+// app.use((req, res, next) => {
+//   res.locals.success_msg = req.flash('success_msg');
+//   res.locals.error_msg = req.flash('error_msg');
+//   res.locals.error = req.flash('error');
+//   next();
+// });
+
 // Middleware to set current user in locals for Handlebars
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;

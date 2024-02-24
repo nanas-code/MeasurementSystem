@@ -36,6 +36,7 @@ class protectRoute {
           res.redirect('back')
         }
       } catch (error) {
+        console.log(error);
         res.render('error', { message: 'Error checking measurement ownership' });
       }
     }else {

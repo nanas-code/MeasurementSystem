@@ -16,16 +16,17 @@
     {{> header }}
 
     <div class="container">
+        {{> nav}}
         <main>
 
             {{{ body }}}
         </main>
-        {{> nav}}
+
         {{> aside}}
 
     </div>
 
-        {{> footer }}
+    {{> footer }}
 
 
     <!-- Here we would put script that can only be run when the place is renderd in the DOM tree. 

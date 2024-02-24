@@ -1,5 +1,5 @@
-<h1>{{title}}</h1>
-<p class="homepage">Welcome to {{title}}</p>
+<h1>{{ title }}</h1>
+<p class="homepage">Welcome to {{ title }}</p>
 <h1>{{message}}</h1>
 <br>
 <h3>
@@ -17,7 +17,9 @@
     </div>
     <br>
 
-<button><a href="/logout">logout</a></button>
+<form action="/logout" method="post">
+    <button type="submit">Logout</button>
+</form>
 {{/if}}
 {{#if messages.error}}
 <div class="alert alert-danger" role="alert">
