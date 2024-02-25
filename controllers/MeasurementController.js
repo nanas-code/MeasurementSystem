@@ -14,11 +14,9 @@ class MeasurementController {
   }
   // get measurements by user:id
   getById = async (req, res) => {
-
     try {
-      const eba = { mode: 'measurements' }
       const measurement = await Measurement.findById(req.params.id).populate('user');
-      res.render("measurementShowDetail", {measurement, eba} );
+      res.render("measurementShowDetail", {measurement, mode: 'measurement'} );
     } catch (error) {
       console.log(error);
       res.redirect("/allmeasurements");
