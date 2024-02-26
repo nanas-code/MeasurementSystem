@@ -1,3 +1,4 @@
+const chalk = require("chalk");
 const Measurement = require("../models/measurement");
 const User = require("../models/user");
 
@@ -31,7 +32,6 @@ class MeasurementController {
         return res.redirect('/allmeasurements');
       }
       res.render("myMeasurementIndex", { measurements });
-      console.log(measurements);
     } catch (error) {
       console.log(error);
       res.render("error");

@@ -68,55 +68,55 @@ connectDB();
 
 // // Global variables for messages
 // app.use((req, res, next) => {
-//   res.locals.success_msg = req.flash('success_msg');
-//   res.locals.error_msg = req.flash('error_msg');
-//   res.locals.error = req.flash('error');
-//   next();
-// });
-
-// Middleware to set current user in locals for Handlebars
-app.use((req, res, next) => {
-  res.locals.currentUser = req.user;
-  next();
-});
-
-// ===================================================
-// HERE WE SHALL HAVE OUR HANDLERS, which we add
-// ===================================================
-
-//Connect routes from router to app
-app.use("/", homeRouter);
-app.use("/", userRouter);
-app.use("/", measurementsRouter);
-
-// ===================================================
-// Error handlers
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
-});
-
-// error handler for everything else
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
-
-// ===================================================
-// Get port from environment and store in Express.
-// Set the DEBUG environment value so that the debug package shows the output
-const port = normalizePort(process.env.PORT || "4123");
-app.set("port", port); // all object that we set on the express app is readable from the requests
-
-// Create HTTP server.
-const server = http.createServer(app); // Here the real server is created with the express app
-
-// Listen on provided port, on all network interfaces.
-server.listen(port, console.log(chalk.red.inverse(`Server listening on port: ${port}`)));
-server.on("error", onError); // connect the SERVER error handler not the request error handling!
-server.on("listening", onListening); // what to call when listening, ie server up and running
+  //   res.locals.success_msg = req.flash('success_msg');
+  //   res.locals.error_msg = req.flash('error_msg');
+  //   res.locals.error = req.flash('error');
+  //   next();
+  // });
+  
+  // Middleware to set current user in locals for Handlebars
+  app.use((req, res, next) => {
+    res.locals.currentUser = req.user;
+    next();
+  });
+  
+  // ===================================================
+  // HERE WE SHALL HAVE OUR HANDLERS, which we add
+  // ===================================================
+  
+  //Connect routes from router to app
+  app.use("/", homeRouter);
+  app.use("/", userRouter);
+  app.use("/", measurementsRouter);
+  
+  // ===================================================
+  // Error handlers
+  // catch 404 and forward to error handler
+  app.use(function (req, res, next) {
+    next(createError(404));
+  });
+  
+  // error handler for everything else
+  app.use(function (err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
+  });
+  
+  // ===================================================
+  // Get port from environment and store in Express.
+  // Set the DEBUG environment value so that the debug package shows the output
+  const port = normalizePort(process.env.PORT || "4123");
+  app.set("port", port); // all object that we set on the express app is readable from the requests
+  
+  // Create HTTP server.
+  const server = http.createServer(app); // Here the real server is created with the express app
+  
+  // Listen on provided port, on all network interfaces.
+  server.listen(port, console.log(chalk.red.inverse(`Server listening on port: ${port}`)));
+  server.on("error", onError); // connect the SERVER error handler not the request error handling!
+  server.on("listening", onListening); // what to call when listening, ie server up and running
