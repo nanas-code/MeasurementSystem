@@ -1,7 +1,7 @@
 <h1>Measurement Detail</h1>
 <h2>{{ mode }} <p>Are you sure you want to delete this measurement?</p></h2>
 <p><strong>Place:</strong> {{measurement.place}}</p>
-<p><strong>Date:</strong> {{measurement.date}}</p>
+<p><strong>Date:</strong> {{formatDate measurement.date "DD MM YYYY"}}</p>
 <p><strong>Value:</strong> {{measurement.value}}</p>
 <p><strong>Type:</strong> {{measurement.type}}</p>
 

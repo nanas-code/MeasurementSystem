@@ -11,6 +11,7 @@ const chalk = require('chalk');
 const flash = require('express-flash');
 const favicon = require("serve-favicon");
 const hbs = require('hbs');
+const moment = require('moment');
 const connectDB = require('./utils/db');
 
 //Routers
@@ -34,6 +35,11 @@ const app = express(); // Creates an Express web application.
 
 // view engine setup
 hbs.registerPartials(__dirname + '/views/partials');
+// Register Handlebars helpers
+hbs.registerHelper('formatDate', function(date, format) {
+  return moment(date).format(format);
+});
+
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 

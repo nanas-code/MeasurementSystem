@@ -4,6 +4,7 @@ const measurementSchema = new Schema(
   {
     place: { type: String, required: true },
     date: { type: Date, 
+      default: Date.now,
       required: true,
     },
     value: {
@@ -14,7 +15,7 @@ const measurementSchema = new Schema(
       ],
       max: 500
     },
-    type: { type: String, required: true, enum: ["distance", "temperature", "speed", "area", "volume" ] },
+    type: { type: String, required: true },
     user: {
       type: Schema.Types.ObjectId,
       ref: 'User',

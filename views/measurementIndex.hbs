@@ -4,7 +4,7 @@
 <ul>
     {{#each acrobat }}
    
-    <li>{{this.place}} &#10073; {{this.date}} &#10073; {{this.value}} &#10073; {{this.type}} </li>
+    <li>{{this.place}} &#10073; {{formatDate this.date "DD MM YYYY"}} &#10073; {{this.value}} &#10073; {{this.type}} </li>
     &#10073; <a href="/measurement/{{this._id}}">View Details</a><br><br>
     {{/each}}
 </ul>
