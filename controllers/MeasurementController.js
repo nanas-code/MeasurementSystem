@@ -66,6 +66,7 @@ class MeasurementController {
       res.render("measurementShowDetail", { measurement, mode: "just added"});
     } catch (error) {
       console.log(error);
+      req.flash('_message', '_message');
       res.redirect("/newmeasurement");
     }
   };

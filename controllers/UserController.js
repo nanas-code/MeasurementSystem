@@ -14,6 +14,7 @@ class UserController {
     const { username, password } = req.body;
     User.register(new User({ username }), password, (error, user) => {
       if (error) {
+        req.flash('error', 'User exists');
         return res.render('registerUser', { error, username });
       }
       const authenticator = passport.authenticate("local", (error, user, info) => {
@@ -21,7 +22,9 @@ class UserController {
           return next(error);
         }
         if (!user) {
+          
           res.render('registerUser', { error: info, username });
+          req.flash('error', 'User not found');
           return;
         }
         req.login(user, (err) => {
@@ -53,8 +56,10 @@ class UserController {
         return next(err);
       }
       if (!user) {
-        // Authentication failed, redirect to login page with flash message
+        // Authentication failed, redirect to login page with flash message        
+        req.flash('error', 'User not found');
         return res.redirect("/login");
+
       }
       req.login(user, (err) => {
         if (err) {
