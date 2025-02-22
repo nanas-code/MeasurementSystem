@@ -1,4 +1,4 @@
-const path= require('path');
+// const path= require('path');
 const express = require('express')
 const measurementsRouter = express.Router()
 const protectRoute = require('../utils/protectRoute')
@@ -18,7 +18,7 @@ measurementsRouter.get('/measurement/:id', theMeasurementController.getById);
 measurementsRouter.get('/newmeasurement', theprotectRoute.isLoggedIn, theMeasurementController.getCreate)
 
 // This route reads the measurements
-// This route fecth the form with the selected id to edit
+// This route fetch the form with the selected id to edit
 measurementsRouter.get('/update/:id', theprotectRoute.isOwner, theMeasurementController.getUpdate)
 measurementsRouter.get('/delete/:id', theprotectRoute.isOwner, theMeasurementController.getDelete)
 
